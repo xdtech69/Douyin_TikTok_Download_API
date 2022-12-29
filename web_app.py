@@ -176,23 +176,6 @@ def log_popup_window():
                        'The log file does not exist, please come back and take a look when an error occurs.'))
 
 
-# 关于弹窗/About pop-up
-def about_popup_window():
-    with popup(t('更多信息', 'More Information')):
-        put_html('<h3>👀{}</h3>'.format(t('访问记录', 'Visit Record')))
-        put_image('https://views.whatilearened.today/views/github/evil0ctal/TikTokDownload_PyWebIO.svg',
-                  title='访问记录')
-        put_html('<hr>')
-        put_html('<h3>⭐Github</h3>')
-        put_markdown('[Douyin_TikTok_Download_API](https://github.com/Evil0ctal/Douyin_TikTok_Download_API)')
-        put_html('<hr>')
-        put_html('<h3>🎯{}</h3>'.format(t('反馈', 'Feedback')))
-        put_markdown('{}：[issues](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/issues)'.format(
-            t('Bug反馈', 'Bug Feedback')))
-        put_html('<hr>')
-        put_html('<h3>💖WeChat</h3>')
-        put_markdown('WeChat：[Evil0ctal](https://mycyberpunk.com/)')
-        put_html('<hr>')
 
 
 # 程序入口/Main interface
@@ -218,18 +201,7 @@ async def main():
     session.run_js("""$('footer').remove()""")
     # 网站标题/Website title
     title = t(config['Web_APP']['Web_Title'], config['Web_APP']['Web_Title_English'])
-    put_html(f"""
-    <div align="center">
-    <a href="https://douyin.wtf/" alt="logo" ><img src="{favicon_url}" width="100"/></a>
-    <h1 align="center">{title}</h1>
-    </div>
-    """)
-    put_row(
-        [put_button(t("快捷指令", 'Shortcuts'), onclick=lambda: ios_pop_window(), link_style=True, small=True),
-         put_button("API", onclick=lambda: api_document_pop_window(), link_style=True, small=True),
-         put_button(t("日志", "Log"), onclick=lambda: log_popup_window(), link_style=True, small=True),
-         put_button(t("关于", 'About'), onclick=lambda: about_popup_window(), link_style=True, small=True)
-         ])
+    
     placeholder = t(
         "批量解析请直接粘贴多个口令或链接，无需使用符号分开，支持抖音和TikTok链接混合，暂时不支持作者主页链接批量解析。",
         "Batch parsing, please paste multiple passwords or links directly, no need to use symbols to separate, support for mixing Douyin and TikTok links, temporarily not support for author home page link batch parsing.")
@@ -357,8 +329,8 @@ async def main():
         # 滚动至result
         scroll_to('result')
         # for循环结束，向网页输出成功提醒
-        put_success(t('解析完成啦 ♪(･ω･)ﾉ\n请查看以下统计信息，如果觉得有用的话请在GitHub上帮我点一个Star吧！',
-                      'Parsing completed ♪(･ω･)ﾉ\nPlease check the following statistics, and if you think it\'s useful, please help me click a Star on GitHub!'))
+        put_success(t('解析完成啦 ♪(･ω･)ﾉ\n请查看以下统计信息',
+                      'Parsing completed ♪(･ω･)ﾉ\nPlease check the following statistics'))
         # 将成功，失败以及总数量显示出来并且显示为代码方便复制
         put_markdown(
             f'**{t("成功", "Success")}:** {success_count} **{t("失败", "Failed")}:** {failed_count} **{t("总数量", "Total")}:** {success_count + failed_count}')
