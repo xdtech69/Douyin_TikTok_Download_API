@@ -251,14 +251,6 @@ async def main():
                           [t(f'{url_type}描述', 'Description'), data.get('desc')],
                           [t('作者昵称', 'Author nickname'), data.get('author').get('nickname')],
                           [t('作者ID', 'Author ID'), data.get('author').get('unique_id')],
-                          [t('API链接', 'API URL'),
-                           put_link(t('点击查看', 'Click to view'),
-                                    f"{config['Web_API']['Domain']}/api?url={url}&minimal=false",
-                                    new_window=True)],
-                          [t('API链接-精简', 'API URL-Minimal'),
-                           put_link(t('点击查看', 'Click to view'),
-                                    f"{config['Web_API']['Domain']}/api?url={url}&minimal=true",
-                                    new_window=True)]
                           ]
             # 如果是视频/If it's video
             if url_type == t('视频', 'Video'):
